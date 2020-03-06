@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './App.css';
 
 function App() {
   const [numeroActual, setNumeroActual] = useState(Math.floor(Math.random() * 100 + 1))
   const [numeroElegido, setNumeroElegido] = useState(undefined)
-  const [mensajeFeedback, setMensajeFeedback] = useState("")
+  const [mensajeFeedback, setMensajeFeedback] = useState(``)
   const [numeroIntentos, setNumeroIntentos] = useState(0)
   const [intentosAnteriores, setIntentosAnteriores] = useState([])
   const [feedbackCode, setFeedbackCode] = useState("")
@@ -19,10 +18,10 @@ function App() {
  const calcularDiferencia = () => {
     if (diferenciaNumeros === 0) {
       if (numeroIntentos === 0) {
-        setMensajeFeedback(`Adivinaste en el primer intento!`)
+        setMensajeFeedback(`Adivinaste en el primer intento! El número elegido era el ${numeroActual}!`)
         setFeedbackCode("win")
       } else {
-        setMensajeFeedback(`Adivinaste en ${numeroIntentos + 1} intentos!`)
+        setMensajeFeedback(`Adivinaste en ${numeroIntentos + 1} intentos! El número elegido era el ${numeroActual}!`)
         setFeedbackCode("win")
       }
     } else if (diferenciaNumeros <= 3) {
@@ -74,7 +73,7 @@ function App() {
             : <button type="submit">Adivine?</button>
           }
         </form>
-        <h3>intentos: {numeroIntentos} </h3>
+        <h3>Intentos: {numeroIntentos} </h3>
         {
           intentosAnteriores.length > 0 ?
           <div className={`attempts ${feedbackCode}`}>

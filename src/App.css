@@ -1,3 +1,218 @@
-.Card {
+@import url('https://fonts.googleapis.com/css?family=Spartan&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #dedede;
+  font-family: 'Spartan', sans-serif;
+  color: rgb(59, 59, 59);
+  transition: 0.5s ease-out;
+}
+
+.container.cold {
+  background: #48edff;
+  transition: 0.5s ease-out;
+}
+
+.container.warm {
+  background: #ff7000;
+}
+
+.container.hot {
+  background: #c50b00;
+  color: rgb(214, 214, 214);
+}
+
+.container.win {
+  background: #00af1b;
+}
+
+.card {
   text-align: center;
+  width: 50vw;
+  border: 1px solid rgb(228, 228, 228);
+  padding: 30px;
+  border-radius: 47px;
+  background: #dedede;
+  box-shadow:  9px 9px 25px #cccccc, -9px -9px 25px #f0f0f0;
+  transition: 0.5s ease-out;
+}
+
+.card.cold {
+  border: 1px solid #8cf4ff;
+  background: #48edff;
+  box-shadow:  8px 8px 16px #42daeb, -8px -8px 16px #4effff;
+  transition: 0.5s ease-out;
+}
+
+.card.warm {
+  border: 1px solid #ff8d365b;
+  border-radius: 47px;
+  background: #ff7000;
+  box-shadow:  8px 8px 16px #de6910, -8px -8px 16px #ff7900;
+  transition: 0.5s ease-out;
+}
+
+.card.hot {
+  border: 1px solid #e6140994;
+  border-radius: 47px;
+  background: #c50b00;
+  box-shadow:  8px 8px 16px #ab0b00, -8px -8px 16px #df0c00;
+  transition: 0.5s ease-out;
+}
+
+.card.win {
+  border: 1px solid #33b5469c;
+  border-radius: 47px;
+  background: #00af1b;
+  box-shadow:  8px 8px 16px #009817, -8px -8px 16px #00c61f;
+  transition: 0.5s ease-out;
+}
+
+.card-divider {
+  margin-bottom: 25px;
+  border: 1px solid rgb(209, 209, 209);
+  border-bottom: 1px solid rgb(223, 223, 223);
+}
+
+.feedback {
+  height: 50px;
+  border: 1px solid rgb(228, 228, 228);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 25px;
+  border-radius: 25px;
+  background: #dedede;
+  box-shadow: inset 3px 3px 10px #cccccc, inset -3px -3px 10px #f0f0f0;
+  transition: 0.5s ease-out;
+}
+
+.feedback.cold {
+  border: 1px solid rgba(5, 230, 255, 0.589);
+  border-radius: 25px;
+  background: #48edff;
+  box-shadow: inset 3px 3px 10px #42daeb, inset -3px -3px 10px #4effff;
+  transition: 0.5s ease-out;
+}
+
+.feedback.warm {
+  border: 1px solid #ff8d365b;
+  border-radius: 25px;
+  background: #ff7000;
+  box-shadow: inset 3px 3px 10px #de6910, inset -3px -3px 10px #ff8914;
+  transition: 0.5s ease-out;
+}
+
+.feedback.hot {
+  border: 1px solid #e6140994;
+  border-radius: 25px;
+  background: #c50b00;
+  box-shadow:  inset 8px 8px 16px #ab0b00, inset -8px -8px 16px #df0c00;
+  transition: 0.5s ease-out;
+}
+
+.feedback.win {
+  border: 1px solid #33b5469c;
+  border-radius: 25px;
+  background: #00af1b;
+  box-shadow: inset 8px 8px 16px #009817, inset -8px -8px 16px #00c61f;
+  transition: 0.5s ease-out;
+}
+
+.card form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card form input {
+  border: 1px solid rgb(131, 131, 131);
+  border-radius: 30px;
+  padding: 10px 10px 10px 25px;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  margin-bottom: 15px;
+  background-color: #f3f3f363;
+  width: 70%;
+}
+
+.card form input:focus {
+  background-color: #f3f3f3b9;
+}
+
+.card form button {
+  padding: 10px;
+  width: 150px;
+  border: 1px solid rgb(131, 131, 131);
+  border-radius: 30px;
+  background-color: white;
+}
+
+.attempts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  background: #dedede;
+  box-shadow: inset 3px 3px 10px #cccccc, inset -3px -3px 10px #f0f0f0;
+  border: 1px solid rgb(228, 228, 228);
+  margin-bottom: 25px;
+  padding: 10px;
+  transition: 0.5s ease-out;
+}
+
+.attempts.cold {
+  border: 1px solid rgba(5, 230, 255, 0.589);
+  border-radius: 25px;
+  background: #48edff;
+  box-shadow: inset 3px 3px 10px #42daeb, inset -3px -3px 10px #4effff;
+  transition: 0.5s ease-out;
+}
+
+.attempts.warm {
+  border: 1px solid #ff8d365b;
+  border-radius: 25px;
+  background: #ff7000;
+  box-shadow: inset 3px 3px 10px #de6910, inset -3px -3px 10px #ff8914;
+  transition: 0.5s ease-out;
+}
+
+.attempts.hot {
+  border: 1px solid #e6140994;
+  border-radius: 25px;
+  background: #cf0b00;
+  box-shadow: inset 3px 3px 10px #ab0b00, inset -3px -3px 10px #df0c00;
+  transition: 0.5s ease-out;
+}
+
+.attempts.win {
+  border: 1px solid #33b5469c;
+  border-radius: 25px;
+  background: #00af1b;
+  box-shadow:  inset 3px 3px 10px #009817, inset -3px -3px 10px #00c61f;
+  transition: 0.5s ease-out;
+}
+
+.card-reset-button {
+  padding: 10px;
+  width: 150px;
+  border: 1px solid black;
+  border-radius: 30px;
+}
+
+@media screen and (max-width: 450px) {
+  .card {
+    width: 65vw;
+  }
 }

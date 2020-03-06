@@ -7,30 +7,36 @@ function App() {
   const [mensajeFeedback, setMensajeFeedback] = useState("")
   const [numeroIntentos, setNumeroIntentos] = useState(0)
   const [intentosAnteriores, setIntentosAnteriores] = useState([])
+  const [feedbackCode, setFeedbackCode] = useState("")
 
   const diferenciaNumeros = Math.abs(numeroActual - numeroElegido)
 
   const inputRef = useRef()
 
-  console.log(numeroActual)
-  console.log(numeroElegido)
-  console.log(diferenciaNumeros)
+  console.log(intentosAnteriores)
+  console.log(numeroIntentos)
 
  const calcularDiferencia = () => {
     if (diferenciaNumeros === 0) {
       if (numeroIntentos === 0) {
         setMensajeFeedback(`Adivinaste en el primer intento!`)
+        setFeedbackCode("win")
       } else {
         setMensajeFeedback(`Adivinaste en ${numeroIntentos + 1} intentos!`)
+        setFeedbackCode("win")
       }
     } else if (diferenciaNumeros <= 3) {
       setMensajeFeedback("Re caliente")
+      setFeedbackCode("hot")
     } else if (diferenciaNumeros <= 10) {
       setMensajeFeedback("Tibio")
+      setFeedbackCode("warm")
     } else if (diferenciaNumeros > 10) {
       setMensajeFeedback("Frio")
+      setFeedbackCode("cold")
     } else {
       setMensajeFeedback("Intentá adivinar!")
+      setFeedbackCode("default")
     }
   }
 
@@ -41,35 +47,49 @@ function App() {
     setNumeroIntentos(0)
     setIntentosAnteriores([])
     inputRef.current.value = ""
+    setFeedbackCode("")
   }
 
   useEffect(() => {
     calcularDiferencia()
-    setIntentosAnteriores([...intentosAnteriores, numeroElegido])
-    if (intentosAnteriores.length > 0) {
-      setNumeroIntentos(numeroIntentos + 1)
-    }
+    numeroElegido && setIntentosAnteriores([...intentosAnteriores, numeroElegido])
+    numeroElegido && setNumeroIntentos(numeroIntentos + 1)
   }, [numeroElegido])
 
 
   return (
-    <div className="Card">
-      <h1>title</h1>
-      <div className="feedback">{mensajeFeedback}</div>
-      <form onSubmit={(e) => { e.preventDefault();
-          const guess = e.target.elements.inputNumber.value
-          setNumeroElegido(guess)
-          calcularDiferencia()}}>
-        <input ref={inputRef} type="number" name="inputNumber" id="inputNumber"/>
-        <button type="submit">Adivine?</button>
-      </form>
-      <h3>intentos: {numeroIntentos} </h3>
-        <div className="attempts">Intentos anteriores: {intentosAnteriores.map((intento, index) => <p key={index}>{intento}</p>)}</div>
+    <div className={`container ${feedbackCode}`}>
+      <div className={`card ${feedbackCode}`}>
+        <h1>HOT or COLD</h1>
+        <hr className="card-divider"/>
+        <div className={`feedback ${feedbackCode}`}>{mensajeFeedback}</div>
+        <form onSubmit={(e) => { e.preventDefault();
+            const guess = e.target.elements.inputNumber.value
+            setNumeroElegido(guess)
+            calcularDiferencia()}}>
+          <input placeholder="Colocá tu numero..." ref={inputRef} type="number" name="inputNumber" id="inputNumber" required />
+          {
+            feedbackCode === "win" ?
+            <button type="submit" disabled>Adivine?</button>
+            : <button type="submit">Adivine?</button>
+          }
+        </form>
+        <h3>intentos: {numeroIntentos} </h3>
+        {
+          intentosAnteriores.length > 0 ?
+          <div className={`attempts ${feedbackCode}`}>
+          <p>Intentos anteriores: {intentosAnteriores.map((intento, index) => (index ? ', ' : '') + intento )}</p>
+          </div>
+          : <div className={`attempts ${feedbackCode}`}>
+          <p>Todavía no intentaste ninguna vez!</p>
+          </div>
+        }
         {
         numeroElegido ?
-        <button onClick={reset}>Reset</button>
-        : <button disabled onClick={reset}>Reset</button>
+        <button className="card-reset-button" onClick={reset}>Reset</button>
+        : <button disabled className="card-reset-button" onClick={reset}>Reset</button>
         }
+      </div>
     </div>
   );
 }

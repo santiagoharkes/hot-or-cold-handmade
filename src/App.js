@@ -61,7 +61,7 @@ function App() {
     <div className={`container ${feedbackCode}`}>
       <div className={`card ${feedbackCode}`}>
         <h1>HOT or COLD</h1>
-        <hr className="card-divider"/>
+        <hr className={`card-divider ${feedbackCode}`}/>
         <div className={`feedback ${feedbackCode}`}>{mensajeFeedback}</div>
         <form onSubmit={(e) => { e.preventDefault();
             const guess = e.target.elements.inputNumber.value
